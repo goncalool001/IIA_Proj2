@@ -38,7 +38,11 @@ public class GeneticAlgorithm : MetaHeuristic
         while (new_pop.Count < populationSize)
         {
             GeneticIndividual parent1 = (GeneticIndividual)selection.torneio(population, populationSize, tournamentSize, elitist); //torneio
-            GeneticIndividual parent2 = (GeneticIndividual)selection.torneio(population, populationSize, tournamentSize, elitist);
+            GeneticIndividual parent2;
+            do
+            {
+                parent2 = (GeneticIndividual)selection.torneio(population, populationSize, tournamentSize, elitist);
+            } while (parent1 == parent2);
 
             GeneticIndividual tmp1 = (GeneticIndividual)parent1.Clone(); 
             GeneticIndividual tmp2 = (GeneticIndividual)parent2.Clone();
