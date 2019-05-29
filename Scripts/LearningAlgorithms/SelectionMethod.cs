@@ -17,29 +17,18 @@ public class SelectionMethod
    
     //https://cstheory.stackexchange.com/questions/14758/tournament-selection-in-genetic-algorithms
 
-    public Individual torneio(List<Individual> pop,int populationSize,int tournSize,bool elitist)
+    public Individual torneio(List<Individual> pop,int tournSize)
     {
         Individual best = null;
         Individual ind;
         
-        int n_start;
-
-        if (elitist)
-        {
-            n_start = 1;
-        }
-        else
-        {
-            n_start = 0;
-        }
 
         for (int i=1; i < tournSize; i++)
         {
-            int rand = UnityEngine.Random.Range(0, pop.Count);
-
-            //Debug.Log("random: "+rand+" pop.count: "+ pop.Count +" psize: " +populationSize);
-            ind = pop[rand];
-            if( (best == null) || (ind.Fitness>best.Fitness)){
+            int rand = UnityEngine.Random.Range(0, pop.Count); //gera um número aleatório entre 0 e o maximo da população
+         
+            ind = pop[rand]; //vai buscar um individuo com esse random
+            if( (best == null) || (ind.Fitness>best.Fitness)){ //encontra o melhor do torneio
                 best = ind;
             }
         }

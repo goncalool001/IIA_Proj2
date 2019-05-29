@@ -26,21 +26,21 @@ public class GeneticIndividual : Individual {
 
             for (int i = 0; i < n_pontos; i++)
             {
-                gen_list.Add(Random.Range(0, totalSize));
+                gen_list.Add(Random.Range(0, totalSize)); //gera uma lista de inteiros aleatórios 
             }
 
             gen_list.Sort();
             bool cross = false;
             for(int i = 0,j=0; i < totalSize; i++)
             {
-                if(j<gen_list.Count && gen_list[j] == i)
+                if(j<gen_list.Count && gen_list[j] == i)  //se o aleatório for igual a i
                 {
                     cross = !cross;
                     j++;
                 }
-                if (cross) // se existiu crossover
+                if (cross) // se existir crossover
                 {
-                    genotype[i] = ((GeneticIndividual)partner).genotype[i];
+                    genotype[i] = ((GeneticIndividual)partner).genotype[i];//altera o genotipo 
                 }
             }
         }
@@ -50,7 +50,7 @@ public class GeneticIndividual : Individual {
 	{
         for (int i = 0; i < totalSize; i++)
         {
-            if (Random.Range(0.0f, 1.0f) < probability)
+            if (Random.Range(0.0f, 1.0f) < probability) // se o random for < que a probabilidade altera o genótipo do ponto em questão
             {
                 genotype[i] = Random.Range(-1.0f, 1.0f);
             }

@@ -37,12 +37,12 @@ public class GeneticAlgorithm : MetaHeuristic
 
         while (new_pop.Count < populationSize)
         {
-            GeneticIndividual parent1 = (GeneticIndividual)selection.torneio(population, populationSize, tournamentSize, elitist); //torneio
+            GeneticIndividual parent1 = (GeneticIndividual)selection.torneio(population, tournamentSize); //torneio
             GeneticIndividual parent2;
             do
             {
-                parent2 = (GeneticIndividual)selection.torneio(population, populationSize, tournamentSize, elitist);
-            } while (parent1 == parent2);
+                parent2 = (GeneticIndividual)selection.torneio(population, tournamentSize);
+            } while (parent1 == parent2);//para que o pai 1 seja diferente do 2
 
             GeneticIndividual tmp1 = (GeneticIndividual)parent1.Clone(); 
             GeneticIndividual tmp2 = (GeneticIndividual)parent2.Clone();
@@ -56,11 +56,12 @@ public class GeneticAlgorithm : MetaHeuristic
             child1.Mutate(mutationProbability);//mutaçoes 
             child2.Mutate(mutationProbability);
 
-            new_pop.Add(child1);
+            new_pop.Add(child1); //adiciona à população os filhos
             new_pop.Add(child2);
 
         }
         population = new_pop;
+
         /*
         float maximum = population[0].Fitness;
         for(int i = 0; i < population.Count - 1; i++)

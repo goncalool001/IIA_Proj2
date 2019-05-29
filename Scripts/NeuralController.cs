@@ -191,21 +191,13 @@ public class NeuralController : MonoBehaviour
     }
 
 	public float GetScore() {
-        // Fitness function. The code to attribute fitness to individuals should be written here.
-        //Debug.Log("(GoalsOnAdversaryGoal * 5): "+(GoalsOnAdversaryGoal * 10)+ " (GoalsOnMyGoal * 7): " + (GoalsOnMyGoal * 12) + " Distancia Para a bola: " + (750000 / distanceToBall) + " Distancia b to adv: "+ (750000 / distancefromBallToAdversaryGoal)+" Tocou na bola: "+ hitTheBall);
+        // Fitness function. The code to attribute fitness to individuals should be written here.       
         float fitness;
-        /*if (hitTheBall != 0)
-        {
-            fitness = ((GoalsOnAdversaryGoal * 12) - (GoalsOnMyGoal * 13)) * (650000 / distanceToBall) * (650000 / distancefromBallToAdversaryGoal) * (hitTheBall*5)*(avgSpeed/100);
-        }
-        else
-        {
-            fitness = ((GoalsOnAdversaryGoal * 12) - (GoalsOnMyGoal * 13)) * (650000 / distanceToBall) * (650000 / distancefromBallToAdversaryGoal)* (avgSpeed / 100);
-        }*/
-        fitness = distancefromBallToMyGoal / distancefromBallToAdversaryGoal;
-        fitness = fitness / distanceToBall;
 
-        int golos = GoalsOnAdversaryGoal*2 - GoalsOnMyGoal*3;
+        fitness = distancefromBallToMyGoal / distancefromBallToAdversaryGoal; //enquanto mais longe a bola estiver da minha baliza +fitness tem
+        fitness = fitness / distanceToBall; //enquanto mais perto estiver da bola +fitness tem
+
+        int golos = GoalsOnAdversaryGoal*2 - GoalsOnMyGoal*3; // diferença de golos, valorizando sempre um resultado positivo
         //Debug.Log("GOLOS: "+golos+" fit: "+fitness);
         fitness *=  (golos*5000000);
         //fitness = fitness * fitness * fitness;
